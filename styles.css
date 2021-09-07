@@ -78,6 +78,10 @@ select{
     overflow: hidden;
 
 }
+.filter-todo{
+    width:8rem;
+    height: 1.1rem;
+}
 select{
     color: #FFB319;
     width: 10rem;
@@ -85,4 +89,10 @@ select{
 }
 .select::after{
     content: "\25BC";
+    position: absolute;
+    background-color: #FFB319;
+    top:0;
+    right:0;
+    padding :1rem;
+    pointer-events: none;
 }

@@ -2,10 +2,12 @@
 const todoButton = document.querySelector(".todo-button");
 const newInput=document.querySelector(".new-input");
 const todoList =document.querySelector(".todo-list");
+const filterOption=document.querySelector(".filter-todo");
 // event listners
-todoButton.addEventListener("click",addTodo)
+todoButton.addEventListener("click",addTodo);
 //***starline*****/ click anywhere in todolist to wakeup a function 
-todoList.addEventListener("click",deleteCheck)
+todoList.addEventListener("click",deleteCheck);
+filterOption.addEventListener("click",filterTodo);
 // for (let i=0 ;i<allInputs.length;i++){
 //     tooList.innerHTML += "<li>"+allInputs[i=]+"</li>"+"<input type="checkbox">"
 // }
@@ -23,6 +25,8 @@ function addTodo(event){
      newTodo.innerText= newInput.value;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
+    // add todos to local storag
+    // saveLocal.Todos(newInput.value);/////not running
     // completed button
     const completedButton=document.createElement("button");
     completedButton.innerHTML='<i class="fas fa-check"></i>';
@@ -56,4 +60,59 @@ function deleteCheck(e) {
         // on clicking checkmark class compled is going to run
         todo.classList.toggle("completed");
     }
+}
+function filterTodo(e){
+    const todos =todoList.childNodes;
+    todos.forEach(function(todo){
+        switch (e.target.value){
+            case "all" :
+            todo.style.display ="flex";
+            break;
+            case "completed":
+            if (todo.classList.contains("completed")){
+            todo.style.display="flex";}
+            else{
+                todo.style.display="none";
+            }
+            break;
+            case "uncompleted":
+                if(!todo.classList.contains("completed")){
+                    todo.style.display="flex"
+
+                }
+                else {
+                    todo.style.display="none"
+                }
+                break;
+
+
+        
+        }
+    })
+}
+ // creating local storage
+function saveLocalTodos(todo){
+// first check if we alredy have a thing in there if not then create a empty arrey
+let todos;
+if (localStorage.getItem("todos")===null){
+    todos=[];
+}
+else {
+    todos =JSON.parse(localStorage.getItem("todos"));
+}
+todos.push(todos);
+localStorage.setItem("todos",JSON.stringify(todos));
+}
+function getTodos(){
+    let todos;
+    if (localStorage.getItem("todos")===null){
+        todos=[];
+    }
+    else {
+        todos =JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.forEach({
+        
+    })
+
 }
