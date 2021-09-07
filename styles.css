@@ -1,0 +1,88 @@
+body{
+    background-image: linear-gradient(120deg ,#FFE194,#FFB319);
+color: white;
+text-align: center;
+padding: 30px;
+}
+.header{
+    text-align: right;
+}
+#new-input{
+    width:50px;
+    height: 25px;
+}
+.btn-new{
+height: 30px;
+width:50px;
+margin-left: 0;
+}.todo-button:hover{
+    background-color:#FFB319 ;
+    cursor: pointer;
+}
+.todo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.todo{
+    margin:.5rem;
+    background: #fff;
+    color:#000;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* transition hone main time */
+    transition:all .5s ease;
+}
+.todo li{
+    flex:1;
+}.trash-btn ,
+.complete-btn{
+background:#FFB319 ;
+color: white;
+border: none;
+padding: 1rem;
+cursor:pointer;
+font-size: 1rem;
+}
+.complete-btn{
+    background-color: rgb(95, 204, 95);
+}
+.todo-item{
+    padding:0rem .5rem;
+    text-align: left;}
+    /* by after doing these we can click any where on icon to envoke function we want */
+.fa-trash,
+.fa-check{
+    pointer-events: none;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: .5;
+
+}
+.fall{
+    transform: translateY(8rem) rotateZ(20deg);
+}
+select{
+ -moz-animation: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+.select{
+    margin:1rem;
+    position:relative;
+    overflow: hidden;
+
+}
+select{
+    color: #FFB319;
+    width: 10rem;
+    cursor: pointer;      
+}
+.select::after{
+    content: "\25BC";
+}
