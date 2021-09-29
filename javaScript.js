@@ -8,6 +8,8 @@ todoButton.addEventListener("click",addTodo);
 //***starline*****/ click anywhere in todolist to wakeup a function 
 todoList.addEventListener("click",deleteCheck);
 filterOption.addEventListener("click",filterTodo);
+// call function if page is reloaded
+document.addEventListener("DOMContentLoaded",getTodos);
 // for (let i=0 ;i<allInputs.length;i++){
 //     tooList.innerHTML += "<li>"+allInputs[i=]+"</li>"+"<input type="checkbox">"
 // }
@@ -26,8 +28,8 @@ function addTodo(event){
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
     // add todos to local storag
-    // saveLocal.Todos(newInput.value);/////not running
-    // completed button
+    saveLocalTodos(newInput.value);/////not running
+    // completed button 
     const completedButton=document.createElement("button");
     completedButton.innerHTML='<i class="fas fa-check"></i>';
     completedButton.classList.add("complete-btn");
@@ -49,7 +51,8 @@ function deleteCheck(e) {
     if (item.classList[0]==="trash-btn"){
         const todo =item.parentElement;
         // animation
-        todo.classList.add("fall") 
+        todo.classList.add("fall") ;
+        removeLocalTodos(todo);
         todo.addEventListener("transitionend",function(){
             todo.remove();
         })
@@ -84,8 +87,6 @@ function filterTodo(e){
                     todo.style.display="none"
                 }
                 break;
-
-
         
         }
     })
@@ -100,19 +101,56 @@ if (localStorage.getItem("todos")===null){
 else {
     todos =JSON.parse(localStorage.getItem("todos"));
 }
-todos.push(todos);
+todos.push(todo);
 localStorage.setItem("todos",JSON.stringify(todos));
 }
 function getTodos(){
-    let todos;
+    console.log("hello")
+    
     if (localStorage.getItem("todos")===null){
         todos=[];
     }
     else {
         todos =JSON.parse(localStorage.getItem("todos"));
     }
-    todos.forEach({
+    todos.forEach(function(todo){
+        const todoDiv=document.createElement("div"); 
+    todoDiv.classList.add("todo");
+
+    const newTodo =document.createElement("li");
+  
+     newTodo.innerText= todo;
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
+    // completed button
+    const completedButton=document.createElement("button");
+    completedButton.innerHTML='<i class="fas fa-check"></i>';
+    completedButton.classList.add("complete-btn");
+    todoDiv.appendChild(completedButton);
+    // trash button
+    const trashButton=document.createElement("button");
+    trashButton.innerHTML='<i class="fas fa-trash"></i>';
+    trashButton.classList.add("trash-btn");
+    todoDiv.appendChild(trashButton );
+    //append to list
+    todoList.appendChild(todoDiv);
+        
         
     })
 
 }
+function removeLocalTodos(){
+        let todos;
+        
+        if (localStorage.getItem("todos")===null){
+            todos=[];
+        }
+        else {
+            todos =JSON.parse(localStorage.getItem("todos"));
+        }
+        const todoIndex =todo.children[0].innerText;
+        //splice is is used to remove element from arrey hre number 1 indicale how many items gone remove
+        todos.splice(todos.indexOf(todoIndex),1);
+        localStorage.setItem("todos",JSON.stringify)
+    }
+      

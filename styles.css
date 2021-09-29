@@ -36,6 +36,9 @@ margin-left: 0;
     /* transition hone main time */
     transition:all .5s ease;
 }
+.todo-item{
+    width:300px;
+}
 .todo li{
     flex:1;
 }.trash-btn ,
